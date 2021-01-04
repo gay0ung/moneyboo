@@ -16,9 +16,7 @@
           />
           <!-- 이메일 유효성 검사 메세지 -->
           <div class="logmessage-box">
-            <p v-if="useremail && !emailCheck">
-              가입된 이메일을 입력해주세요.
-            </p>
+            <p v-if="useremail && !emailCheck">가입된 이메일을 입력해주세요.</p>
           </div>
         </div>
         <!-- 비밀번호 -->
@@ -32,9 +30,7 @@
           />
           <!-- 비밀번호 유효성 검사 메세지 -->
           <div class="logmessage-box">
-            <p v-if="password && !passwordCheck">
-              비밀번호를 입력해주세요.
-            </p>
+            <p v-if="password && !passwordCheck">비밀번호를 입력해주세요.</p>
           </div>
         </div>
         <button
@@ -195,6 +191,7 @@ export default {
     },
     // 클릭 이벤트
     clickSignupForm(event) {
+      console.log(event.target);
       clickFormEvent(event.target);
     },
     // 폼 리셋

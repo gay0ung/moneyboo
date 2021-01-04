@@ -1,20 +1,20 @@
 <template>
   <div class="bar-graph-cont" :class="{ on: selectedTab === 1 }">
     <div class="bar-graph">
-      <h3>{{ whatYear() }}</h3>
+      <h3>{{ whatYear }}</h3>
       <div id="canvas-holder">
         <canvas ref="bGraph"></canvas>
       </div>
     </div>
 
-    <ListOfyears :bgColors="bgColor"></ListOfyears>
+    <ListOfyears :bgColors="bgColor" :year="whatYear"></ListOfyears>
   </div>
 </template>
 
 <script>
 import { yearCheck } from '@/utils/statistics.js';
 import ListOfyears from '@/components/statistics/ListOfyears.vue';
-import { eventBus } from '../../main';
+import { eventBus } from '../../main.js';
 
 let barData = null;
 let myChart = null;
@@ -96,10 +96,12 @@ export default {
     };
     myChart = new this.$_Chart(ctx, barData);
   },
-  methods: {
+  computed: {
     whatYear() {
       return yearCheck();
     },
+  },
+  methods: {
     barChartDataUpdate(myChart, barData, yList) {
       for (let num in yList) {
         let month = yList[num].month;
