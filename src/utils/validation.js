@@ -7,7 +7,6 @@ function passwordValidation(password) {
 
 // 이메일 체크
 function emailValidation(email) {
-  // const re = /\S+@\S+\.\S+/;
   const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
   return regExp.test(email);
@@ -22,9 +21,6 @@ function engValidation(email) {
 
 // 닉네임 체크
 function nicknameValidation(nickname) {
-  //const korCk = /([^가-힣ㄱ-ㅎㅏ-ㅣ\x20])/i;
-  //const engCk = /^[a-zA-Z]*$/;
-
   return nickname.length > 2 && nickname.length < 10;
 }
 

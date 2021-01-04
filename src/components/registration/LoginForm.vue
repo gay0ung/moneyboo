@@ -24,7 +24,7 @@
           <label for="password" v-if="!password">비밀번호</label>
           <input
             id="password"
-            type="text"
+            type="password"
             v-model="password"
             autocomplete="off"
           />
@@ -33,8 +33,6 @@
             <p v-if="password && !passwordCheck">비밀번호를 입력해주세요.</p>
           </div>
         </div>
-        <!-- 회원정보 까먹었을때 찾는 버튼 -->
-        <!-- <p><a href="" class="font-jua">비밀번호 찾기</a></p> -->
         <button
           :class="{ active: loginSuccessBtn }"
           class="btn big login add-btn font-jua"
@@ -128,83 +126,32 @@ export default {
           const response = await this.$store.dispatch('FATCH_LOGIN', userData);
           const uid = response.user.uid;
 
-          // console.log(response);
-          // this.initForm();
           if (window.innerWidth > 1023) {
             initRegistForm();
           }
-          // settings에 데이터 확인하고 라우터 이동
-          // this.settingsRef(response.user.uid)
-          //   .get()
-          //   .then(doc => {
-          //     // settings에 값이 있으면?
-          //     console.log(doc);
-          //     if (doc.exists) {
-          //       this.loginSuccess('main');
-          //     } else {
-          //       this.loginSuccess('setting');
-          //     }
-          //   });
 
           this.settingListRef(uid)
             .get()
             .then(snapshot => {
-              console.log('셋팅리스트', snapshot);
-              // snapshot.empty === false 면 col에 값이 있는 것
-
               // 셋팅리스트에 값이 비어있으면
               if (snapshot.empty) {
-                console.log(snapshot.empty, '비어있다!!');
                 this.alertMessage =
                   '첫 로그인 성공 ! 관리페이지에서 목표금액과 자산을 설정해주세요.';
 
-                bus.$emit('show:toast', this.alertMessage, 'check');
-
-                setTimeout(() => {
-                  this.$router.push(`/setting`).catch(err => {
-                    console.log('로그인폼 셋팅즈로 이동하는01', err);
-                  });
-                }, 2500);
+                this.loginSuccess('setting', this.alertMessage);
 
                 // 셋팅리스트에 값이 있으면
               } else {
-                console.log(snapshot.empty, '값이있다!!!');
-
-                // snapshot.docs.forEach(data => {
-                //   console.log('이건데이터의데이터', data.data());
-
-                //   console.log('에셋 ===>', data.data().assets.length);
-                //   console.log('뱅크 ===>', data.data().banks.length);
-                //   console.log('카테고리 ===>', data.data().categories.length);
-                // });
-
                 if (snapshot.docs.length < 3) {
-                  console.log('3보다 작음');
-
                   this.alertMessage =
                     '로그인 성공 ! 관리페이지에서 값을 채워주세요.';
 
-                  bus.$emit('show:toast', this.alertMessage, 'check');
-
-                  setTimeout(() => {
-                    this.$router.push(`/setting`).catch(err => {
-                      console.log('로그인폼 셋팅즈로 이동하는02', err);
-                    });
-                  }, 2500);
+                  this.loginSuccess('setting', this.alertMessage);
 
                   //값이 다 있으면 '메인페이지로 이동'
                 } else {
-                  console.log('3보다 큼');
-
                   this.alertMessage = '로그인 성공 ! 메인페이지로 이동합니다.';
-
-                  bus.$emit('show:toast', this.alertMessage, 'check');
-
-                  setTimeout(() => {
-                    this.$router.push('/main').catch(err => {
-                      console.log('로그인폼 메인으로 이동하는', err);
-                    });
-                  }, 2500);
+                  this.loginSuccess('main', this.alertMessage);
                 }
               }
             });
@@ -219,9 +166,27 @@ export default {
           this.validCheckMessage(this.emailCheck, this.passwordCheck);
         }
       } catch (err) {
-        console.log('로그인폼 에러다!!!', err);
         // 에러메세지
         this.errorMessage(err);
+      }
+    },
+    // 로그인 성공한뒤 로직
+    loginSuccess(position, msg) {
+      // 위치가 setting
+      if (position == 'setting') {
+        bus.$emit('show:toast', msg, 'check');
+
+        setTimeout(() => {
+          this.$router.push(`/${position}`);
+        }, 2500);
+
+        // 위치가 main
+      } else {
+        bus.$emit('show:toast', msg, 'check');
+
+        setTimeout(() => {
+          this.$router.push(`/${position}`);
+        }, 2500);
       }
     },
     // 클릭 이벤트
@@ -273,28 +238,6 @@ export default {
           : '';
 
       bus.$emit('show:toast', this.errMessage, 'warning');
-    },
-    // 로그인 성공한뒤 로직
-    loginSuccess(position) {
-      console.log('로그인 성공 ===> 위치는??', position);
-      // 첫 로그인 셋팅페이지로 갈때
-      if (position === 'setting') {
-        console.log('여기는 관리페이지');
-
-        this.alertMessage =
-          '첫 로그인 성공 ! 관리페이지에서 목표금액과 자산을 설정해주세요.';
-        // 셋팅되어 있을때, main 페이지로 갈때
-      } else {
-        console.log('여기는 메인페이지');
-        this.alertMessage = '로그인 성공 ! 메인페이지로 이동합니다.';
-      }
-      // 팝업
-      bus.$emit('show:toast', this.alertMessage, 'check');
-
-      // 라우터 이동
-      setTimeout(() => {
-        this.$router.push(`/${position}`);
-      }, 2500);
     },
     // settings DB
     settingListRef(uid) {

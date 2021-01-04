@@ -41,7 +41,7 @@
           <label for="password" v-if="!password">비밀번호</label>
           <input
             id="password"
-            type="text"
+            type="password"
             v-model="password"
             autocomplete="off"
           />

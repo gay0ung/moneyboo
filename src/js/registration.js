@@ -1,7 +1,4 @@
 // 전역변수
-
-// const mql = window.matchMedia('screen and (max-width: 768px)');
-
 //회원가입 변수
 let signupForm = null; // width 제어
 let signupCont = null; // display : none or block
@@ -31,7 +28,6 @@ function globalMountedInSingup(elm) {
   signupCont = elm.querySelector('.regist-form-cont');
   signupMask = elm.querySelector('.mask');
   loginBtn = signupCont.querySelector('.go-btn.login');
-  console.log(loginBtn);
 }
 
 // 로그인 페이지가 마운티드 됐을때 실행
@@ -49,9 +45,9 @@ function resizeEvent() {
 
     // 태블릿
     if (window.innerWidth <= 1023) {
-      signupBtn.classList.add('active');
-      loginBtn.classList.add('active');
+      buttonClassAdd();
 
+      // 현재 페이지 로그인
       if (currentPage === 'login') {
         currentPage = 'login';
 
@@ -63,6 +59,8 @@ function resizeEvent() {
         signupForm.style.display = 'none';
 
         transitionReset();
+
+        // 현재페이지 회원가입
       } else if (currentPage === 'signup') {
         currentPage = 'signup';
 
@@ -84,13 +82,15 @@ function resizeEvent() {
 
       loginCont.style.display = 'block';
       loginForm.style.display = 'block';
+
       signupMask.style.display = 'block';
       signupForm.style.display = 'block';
+      signupCont.style.display = 'block';
+
       loginForm.style.width = '50%';
       signupForm.style.width = '50%';
-      signupCont.style.display = 'block';
-      signupBtn.classList.remove('active');
-      loginBtn.classList.remove('active');
+
+      buttonClassRemove();
 
       initRegistForm();
       clearTimeout(timer);
@@ -116,11 +116,9 @@ function sizeInit() {
 
     loginMask.style.display = 'none';
     signupForm.style.display = 'none';
-    signupBtn.classList.add('active');
-    loginBtn.classList.add('active');
+    buttonClassAdd();
   } else {
-    signupBtn.classList.remove('active');
-    loginBtn.classList.remove('active');
+    buttonClassRemove();
   }
 }
 
@@ -132,8 +130,6 @@ function goSignupEvent() {
   signupForm.style.width = '100%';
   signupMask.style.display = 'none';
 
-  // loginCont.classList.add('change');
-  // signupCont.classList.add('change');
   changeClassAdd();
 }
 
@@ -156,6 +152,16 @@ function changeClassAdd() {
 function changeClassRemove() {
   loginCont.classList.remove('change-left');
   signupCont.classList.remove('change-right');
+}
+
+function buttonClassAdd() {
+  signupBtn.classList.add('active');
+  loginBtn.classList.add('active');
+}
+
+function buttonClassRemove() {
+  signupBtn.classList.remove('active');
+  loginBtn.classList.remove('active');
 }
 
 // 클릭 이벤트
