@@ -18,7 +18,7 @@ import { moneybooRef } from '@/api/firestore';
 import { eventBus } from '../../main';
 
 export default {
-  props: ['bgColors'],
+  props: ['bgColors', 'year'],
   data() {
     return {
       currentUID: '',
@@ -45,7 +45,11 @@ export default {
         .collection('listAdd')
         .onSnapshot(snapShot => {
           snapShot.forEach(doc => {
-            this.yearsList.push(doc.data().listData);
+            const whatYear = String(this.year).substring(2),
+              yearListCheck = doc.id.substring(0, 2);
+            if (whatYear === yearListCheck) {
+              this.yearsList.push(doc.data().listData);
+            }
           });
           this.calculateEP();
         });
@@ -56,7 +60,7 @@ export default {
       const yearsDB = this.yearsList;
 
       let flattened = yearsDB.reduce((acc, curr) => acc.concat(curr), []);
-
+      console.log(flattened);
       let exArr = flattened.filter(exp => exp.item === 'expend');
 
       // 몇월인지 ?
