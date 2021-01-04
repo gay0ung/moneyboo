@@ -21,4 +21,10 @@ function settingColRef(uid) {
     .collection('settingList');
 }
 
-export { db, getUsersRef, moneybooRef, settingColRef };
+function dailyColRef(uid) {
+  return moneybooRef(uid)
+    .doc('daily')
+    .collection('listAdd');
+}
+
+export { db, getUsersRef, moneybooRef, settingColRef, dailyColRef };
