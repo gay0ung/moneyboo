@@ -31,8 +31,9 @@
 
 <script>
 import { addComma, newConversionMonth } from '@/utils/filters';
-import { moneybooRef } from '@/api/firestore';
+import { dailyColRef } from '@/api/firestore';
 import { eventBus } from '../../main';
+import { mapState } from 'vuex';
 
 export default {
   props: ['selectedChart', 'selectedNum', 'roundData', 'bgColors', 'hbgColors'],
@@ -42,14 +43,13 @@ export default {
       cList: [], // 카테고리별 분류
       cDetail: [], // 카테고리별 상세내용
       pPrice: [], // 지출별 백분율
-      currentUID: '',
     };
   },
   created() {
-    this.currentUID = this.$store.state.uid; // 로그인한 유저 uid
     this.getDailyList();
   },
   computed: {
+    ...mapState(['uid']),
     getComma() {
       return addComma;
     },
@@ -58,20 +58,14 @@ export default {
     },
   },
   methods: {
-    mBooRef() {
-      return moneybooRef(this.currentUID);
+    dailyColRef() {
+      return dailyColRef(this.uid);
     },
 
-    // daily데이터
-    getDailyDB() {
-      return this.mBooRef()
-        .doc('daily')
-        .collection('listAdd');
-    },
-    // daily > dailList
+    // daily > dailList > listAdd
     getDailyList() {
       const today = newConversionMonth();
-      this.getDailyDB()
+      this.dailyColRef()
         .doc(today)
         .onSnapshot(snapShot => {
           if (snapShot.exists) {

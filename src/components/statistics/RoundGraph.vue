@@ -22,7 +22,7 @@ import { eventBus } from '../../main';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 let roundData = null;
-let myChart = null;
+let myChart = null; // chart를 사용할수 있는 데이터가 들어있다.
 
 export default {
   props: ['selectedTab', 'size'],
@@ -125,7 +125,6 @@ export default {
     };
 
     myChart = new this.$_Chart(ctx, roundData);
-    // console.log(myChart);
   },
   computed: {
     whatMonth() {
