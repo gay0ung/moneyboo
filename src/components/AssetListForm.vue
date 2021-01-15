@@ -111,9 +111,9 @@ export default {
       return settingColRef(this.uid);
     },
 
-//    dailyColRef() {
-//      return dailyColRef(this.uid);
-
+    dailyColRef() {
+      return dailyColRef(this.uid);
+    },
     // 은행별 수입 지출 현황
     totalBankAssets(dailyList, bankName, bankAsset) {
       let price = 0;
