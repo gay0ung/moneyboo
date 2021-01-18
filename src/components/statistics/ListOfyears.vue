@@ -14,8 +14,9 @@
 
 <script>
 import { addComma } from '@/utils/filters';
-import { moneybooRef } from '@/api/firestore';
+import { dailyColRef } from '@/api/firestore';
 import { eventBus } from '../../main';
+import { mapState } from 'vuex';
 
 export default {
   props: ['bgColors', 'year'],
@@ -27,32 +28,29 @@ export default {
     };
   },
   created() {
-    this.currentUID = this.$store.state.uid;
     this.getDailyDB();
   },
   computed: {
+    ...mapState(['uid']),
     addComma() {
       return addComma;
     },
   },
   methods: {
-    mBooRef() {
-      return moneybooRef(this.currentUID);
+    dailyColRef() {
+      return dailyColRef(this.uid);
     },
     getDailyDB() {
-      this.mBooRef()
-        .doc('daily')
-        .collection('listAdd')
-        .onSnapshot(snapShot => {
-          snapShot.forEach(doc => {
-            const whatYear = String(this.year).substring(2),
-              yearListCheck = doc.id.substring(0, 2);
-            if (whatYear === yearListCheck) {
-              this.yearsList.push(doc.data().listData);
-            }
-          });
-          this.calculateEP();
+      this.dailyColRef().onSnapshot(snapShot => {
+        snapShot.forEach(doc => {
+          const whatYear = String(this.year).substring(2),
+            yearListCheck = doc.id.substring(0, 2);
+          if (whatYear === yearListCheck) {
+            this.yearsList.push(doc.data().listData);
+          }
         });
+        this.calculateEP();
+      });
     },
 
     // 1년 중 월별 총 지출
@@ -60,7 +58,7 @@ export default {
       const yearsDB = this.yearsList;
 
       let flattened = yearsDB.reduce((acc, curr) => acc.concat(curr), []);
-      console.log(flattened);
+
       let exArr = flattened.filter(exp => exp.item === 'expend');
 
       // 몇월인지 ?
