@@ -49,34 +49,20 @@
             </span>
           </li>
           <li v-for="(bankList, index) in saveAsset.banks" :key="bankList.id">
+            <span class="savedBankName">{{ saveAsset.banks[index].bank }}</span>
             <select name="bank" v-model="bankList.bank">
               <option value="">은행선택</option>
-              <option value="경남은행">경남은행</option>
-              <option value="광주은행">광주은행</option>
-              <option value="국민은행">국민은행</option>
-              <option value="기업은행">기업은행</option>
-              <option value="농협">농협</option>
-              <option value="대구은행">대구은행</option>
-              <option value="부산은행">부산은행</option>
-              <option value="산업은행">산업은행</option>
-              <option value="저축은행">저축은행</option>
-              <option value="새마을금고">새마을금고</option>
-              <option value="수협중항회">수협중항회</option>
-              <option value="신협">신협</option>
-              <option value="신한은행">신한은행</option>
-              <option value="우리은행">우리은행</option>
-              <option value="우체국">우체국</option>
-              <option value="전북은행">전북은행</option>
-              <option value="제주은행">제주은행</option>
-              <option value="카카오뱅크">카카오뱅크</option>
-              <option value="케이뱅크">케이뱅크</option>
-              <option value="하나은행">하나은행</option>
-              <option value="한국씨티은행">한국씨티은행</option>
-              <option value="SC제일은행">SC제일은행</option>
+              <option
+                v-for="bankName in notSavedBankNameList"
+                :key="bankName"
+                :value="bankName"
+              >
+                {{ bankName }}
+              </option>
             </select>
             <input
               type="text"
-              placeholder="해당 은행의 총 목표 금액을 입력해 주세요"
+              placeholder="해당 은행의 총 자산을 입력해 주세요"
               v-model="bankList.asset"
               v-if="
                 bankLength === index ||
@@ -157,6 +143,33 @@ import bus from '@/utils/bus';
 export default {
   data() {
     return {
+      // 은행사 목록
+      bankNameList: [
+        '경남은행',
+        '광주은행',
+        '국민은행',
+        '기업은행',
+        '농협',
+        '대구은행',
+        '부산은행',
+        '산업은행',
+        '저축은행',
+        '새마을금고',
+        '수협중앙회',
+        '신협',
+        '신한은행',
+        '우리은행',
+        '우체국',
+        '전북은행',
+        '제주은행',
+        '카카오뱅크',
+        '케이뱅크',
+        '하나은행',
+        '한국씨티은행',
+        'SC제일은행',
+      ],
+      // 저장된 은행 제외한 은행 목록
+      notSavedBankNameList: [],
       // '입력한 값', 'firebase에서 불러온 저장된 값' 모두 saveAsset 이용.
       saveAsset: {
         assets: {
@@ -179,6 +192,7 @@ export default {
         click: false,
       },
       newBank: false,
+      savedBankList: [],
     };
   },
   created() {
@@ -294,6 +308,7 @@ export default {
           }
         });
       // banks
+      // this.saveAsset.banks.push({ bank: '', asset: '', id: makeID('bank') });
       this.settingListRef()
         .doc('banks')
         .onSnapshot(snapshot => {
@@ -304,14 +319,30 @@ export default {
             if (banks) {
               this.saveAsset.banks = banks;
               this.bankLength = banks.length;
-              // 저장 후 화면에 금액 나타날 때 1000단위 콤마 적용.
               for (let i = 0; i < banks.length; i++) {
+                // 저장된 은행명 체크 후 savedBankList에 추가함.
+                this.savedBankList.push(banks[i].bank);
+                // 저장 후 화면에 금액 나타날 때 1000단위 콤마 적용.
                 this.saveAsset.banks[i].asset = this.assetAddComma(
                   banks[i].asset,
                 );
               }
             }
           }
+
+          // firebase에 저장되지 않은 은행만 notSavedBankNameList에 추가.(추가시 중복되지 않도록)
+          console.log(this.bankNameList);
+          console.log(this.savedBankList);
+          this.bankNameList.forEach(name => {
+            for (let i = 0; i < this.savedBankList.length; i++) {
+              if (name === this.savedBankList[i]) {
+                this.bankNameList.splice(this.bankNameList.indexOf(name), 1);
+              }
+            }
+          });
+          console.log(this.bankNameList);
+          this.notSavedBankNameList = this.bankNameList;
+          console.log(this.notSavedBankNameList);
         });
     },
     // asset 저장
@@ -424,6 +455,14 @@ export default {
         .catch(err => {
           console.log('SetAsset.vue 에 있는 setBankListForm', err);
         });
+
+      // // savedBankList에 추가된 은행 이름 넣기.
+      // for (let i = 0; i < this.saveAsset.banks.length; i++) {
+      //   this.saveAsset.banks[i].bank;
+      //   console.log(this.saveAsset.banks[i].bank);
+      //   this.savedBankList.push(this.saveAsset.banks[i].bank);
+      //   console.log(this.savedBankList);
+      // }
 
       // 수정 끝나면 은행별 자산 비활성박스 덮어씌워진 css 제거.
       this.editCssReset();

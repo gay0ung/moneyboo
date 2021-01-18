@@ -1,9 +1,9 @@
- /* ------ SettingPage.vue ------ */
- .setting-page-wrap {
-  overflow-y:scroll;
+/* ------ SettingPage.vue ------ */
+.setting-page-wrap {
+  overflow-y: scroll;
 }
 .setting-page-wrap:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
@@ -21,11 +21,9 @@
   padding-left: 40px;
 }
 
-
-
 /* ------ SettingPage.vue 공통 ------ */
 .clear:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
@@ -46,18 +44,17 @@ strong {
   color: rgba(59, 59, 59, 0.5);
   display: inline-block;
 }
-.explanation > span{
+.explanation > span {
   border-radius: 3px;
-  line-height: 16px; 
+  line-height: 16px;
   padding: 0 4px;
   text-align: center;
   color: #fff;
-  background-color:  rgba(59, 59, 59, 0.5);
+  background-color: rgba(59, 59, 59, 0.5);
   display: inline-block;
 }
 
-
-/* ------ SetAsset.vue ------ */ 
+/* ------ SetAsset.vue ------ */
 .set-asset > h3 {
   margin-bottom: 0;
 }
@@ -74,7 +71,7 @@ strong {
   /* margin-bottom: 20px; */
   position: relative;
 }
-.set-asset > form > .credit-goal-cont > b.explanation{
+.set-asset > form > .credit-goal-cont > b.explanation {
   margin-bottom: 0;
 }
 .set-asset > form > .credit-goal-cont > button {
@@ -89,7 +86,7 @@ strong {
   top: 5px;
   right: 2%;
 }
-.set-asset > form > .credit-goal-cont > ul{
+.set-asset > form > .credit-goal-cont > ul {
   /* max-height: 170px; */
   margin: 5px 0;
   padding: 10px 10px 2px 10px;
@@ -104,8 +101,8 @@ strong {
   background-color: rgba(226, 201, 146, 0.2) /*#e2c992*/;
   position: relative;
 }
-.set-asset > form > .credit-goal-cont > ul > li.disabled:after{
-  content: '';
+.set-asset > form > .credit-goal-cont > ul > li.disabled:after {
+  content: "";
   display: block;
   width: 100%;
   height: 100px;
@@ -114,13 +111,26 @@ strong {
   top: 0;
   left: 0;
 }
+.set-asset > form > .credit-goal-cont > ul > li > .savedBankName {
+  width: 80%;
+  font-size: 14px;
+  background-color: #f3ebd9;
+  position: absolute;
+  left: 11px;
+  top: 9px;
+}
 
 /* ---은행별자산 입력 칸 추가해 달라는 안내문구 start--- */
-.set-asset > form > .credit-goal-cont > ul > li.explanationLi{
+.set-asset > form > .credit-goal-cont > ul > li.explanationLi {
   height: auto;
   background-color: transparent;
 }
-.set-asset > form > .credit-goal-cont > ul > li.explanationLi > span.explanation{
+.set-asset
+  > form
+  > .credit-goal-cont
+  > ul
+  > li.explanationLi
+  > span.explanation {
   margin: 0;
   padding: 0 5px;
 }
@@ -146,7 +156,7 @@ strong {
   width: calc(100% - 15px);
   height: calc(50% - 14px);
 }
-.set-asset > form > .credit-goal-cont > ul > li > .realTimeAsset{
+.set-asset > form > .credit-goal-cont > ul > li > .realTimeAsset {
   /* color: rgba(59, 59, 59, 0.5); */
   position: absolute;
   /* bottom: 7px; */
@@ -154,53 +164,54 @@ strong {
   right: 10px;
   /* right: 30px; */
 }
-.set-asset > form > .credit-goal-cont > ul > li > .show{ /* 은행 별 자산 남은 금액만 보일 떄 스타일 */
+.set-asset > form > .credit-goal-cont > ul > li > .show {
+  /* 은행 별 자산 남은 금액만 보일 떄 스타일 */
   height: 55px;
-  overflow-X: scroll;
-  top: 50%; 
+  overflow-x: scroll;
+  top: 50%;
   left: 50px;
   right: 40px;
   transform: translateY(-10px);
 }
-.set-asset > form > .credit-goal-cont > ul > li > .show > span{
+.set-asset > form > .credit-goal-cont > ul > li > .show > span {
   height: 35px;
   padding: 6px 10px 0;
   font-size: 15px;
-  background-color: rgba(226, 201, 146, .3);
+  background-color: rgba(226, 201, 146, 0.3);
   display: block;
 }
-.set-asset > form > .credit-goal-cont > ul > li > button.edit{
-  border:none;
+.set-asset > form > .credit-goal-cont > ul > li > button.edit {
+  border: none;
   border-radius: 3px;
-  padding:2px 4px;
-  background-color:rgba(226, 201, 146, 0.4) /*#e2c992*/;
-  font-size:12px;
-  color:#fff;
+  padding: 2px 4px;
+  background-color: rgba(226, 201, 146, 0.4) /*#e2c992*/;
+  font-size: 12px;
+  color: #fff;
   position: absolute;
   top: 50%;
   left: 14px;
   transform: translateY(-2px);
 }
-.set-asset > form > .credit-goal-cont > ul > li > button.edit:hover{
-  background-color:rgba(226, 201, 146, 0.9) /*#e2c992*/;
+.set-asset > form > .credit-goal-cont > ul > li > button.edit:hover {
+  background-color: rgba(226, 201, 146, 0.9) /*#e2c992*/;
 }
-.set-asset > form > .credit-goal-cont > ul > li > button.hide{
+.set-asset > form > .credit-goal-cont > ul > li > button.hide {
   display: none;
 }
-.set-asset > form > .credit-goal-cont > ul > li > button.remove{
+.set-asset > form > .credit-goal-cont > ul > li > button.remove {
   border: none;
   /* border-radius: 2px; */
   padding: 1px 3px;
-  background-color: rgba(226, 201, 146, .3) /*#e2c992*/;
-  font-size:11px;
+  background-color: rgba(226, 201, 146, 0.3) /*#e2c992*/;
+  font-size: 11px;
   color: #fff;
   position: absolute;
   /* top: 20px; */
   top: 50%;
   right: 11px;
 }
-.set-asset > form > .credit-goal-cont > ul > li > button.remove:hover{
-  background-color:rgba(226, 201, 146, 0.9) /*#e2c992*/;
+.set-asset > form > .credit-goal-cont > ul > li > button.remove:hover {
+  background-color: rgba(226, 201, 146, 0.9) /*#e2c992*/;
 }
 
 /* [설정]버튼 */
@@ -214,8 +225,8 @@ strong {
   background-color: #348f6c;
   float: right;
 }
-.set-asset > form > button.colorChange{
-  background-color: #DB8439;
+.set-asset > form > button.colorChange {
+  background-color: #db8439;
 }
 
 input {
@@ -239,9 +250,6 @@ input {
   right: 0;
 } */
 
-
-
-
 /* ------ SetCategory.vue ------ */
 .set-category {
   /* outline: px solid red; */
@@ -252,11 +260,11 @@ input {
   /* outline: px solid blue; */
 }
 .set-category > .category-list-cont:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
-.set-category > .category-list-cont > form > b.explanation{
+.set-category > .category-list-cont > form > b.explanation {
   margin: 30px 0 0;
 }
 .set-category > .category-list-cont > form > ul {
@@ -271,7 +279,7 @@ input {
   flex-wrap: wrap;
   justify-content: center; */
 }
-.set-category > .category-list-cont > form > ul > b.explanation{
+.set-category > .category-list-cont > form > ul > b.explanation {
   margin: 10px 17px;
 }
 .set-category > .category-list-cont > form > ul > li {
@@ -283,57 +291,77 @@ input {
   /* outline:3px solid red;
   position: relative; */
 }
-.set-category > .category-list-cont > form > ul > li > label > input[type='radio'] {
+.set-category
+  > .category-list-cont
+  > form
+  > ul
+  > li
+  > label
+  > input[type="radio"] {
   width: 10px;
   height: 10px;
   display: none;
 }
-.set-category > .category-list-cont > form > ul > li > label > input[type='radio'] + div{
+.set-category
+  > .category-list-cont
+  > form
+  > ul
+  > li
+  > label
+  > input[type="radio"]
+  + div {
   border-radius: 3px;
-  padding:3px 25px 3px 13px;
+  padding: 3px 25px 3px 13px;
   color: #348f6c;
   background-color: rgba(52, 143, 108, 0.3) /*#348f6c*/;
-  cursor:pointer;
+  cursor: pointer;
 }
-.set-category > .category-list-cont > form > ul > li > label > input[type='radio'] + div.disabled{
+.set-category
+  > .category-list-cont
+  > form
+  > ul
+  > li
+  > label
+  > input[type="radio"]
+  + div.disabled {
   /* 카테고리 수정 중일 때, 카테고리 목록들 클릭 안되게 함. */
   pointer-events: none;
 }
 .set-category
   > .category-list-cont
-  > form 
+  > form
   > ul
   > li
   > label
-  > input[type='radio']
+  > input[type="radio"]
   + div
   > span {
   color: #348f6c;
 }
 .set-category
-> .category-list-cont
-> form 
-> ul
-> li:hover
-> label
-> input[type='radio']
-+ div {
-  background-color:rgba(52, 143, 108, 0.5);
+  > .category-list-cont
+  > form
+  > ul
+  > li:hover
+  > label
+  > input[type="radio"]
+  + div {
+  background-color: rgba(52, 143, 108, 0.5);
 
   /* display: flex; */
 }
 .set-category
-> .category-list-cont
-> form 
-> ul
-> li
-> label
-> input[type='radio']
-+ div
-> i{
-  width:15px;
-  padding-right:18px;
-  padding-top:3px;
+  > .category-list-cont
+  > form
+  > ul
+  > li
+  > label
+  > input[type="radio"]
+  + div
+  > i {
+  width: 15px;
+  padding-right: 18px;
+  padding-top: 3px;
 }
 
 .set-category > .category-list-cont > form > ul > li > label > button {
@@ -346,53 +374,53 @@ input {
   right: 7px;
   top: 6px;
 }
-.set-category > .category-list-cont > form > ul > li > label > button:hover{
-  background-color:rgba(52, 143, 108, .3);
+.set-category > .category-list-cont > form > ul > li > label > button:hover {
+  background-color: rgba(52, 143, 108, 0.3);
 }
-.set-category > .category-list-cont > form > ul > li > label > button:focus{
+.set-category > .category-list-cont > form > ul > li > label > button:focus {
   outline: none;
 }
 .set-category
   > .category-list-cont
-  > form 
+  > form
   > ul
   > li
   > label
-  > input[type='radio']:checked
+  > input[type="radio"]:checked
   + div.click,
-  .set-category
+.set-category
   > .category-list-cont
-  > form 
+  > form
   > ul
   > li
   > label
-  > input[type='radio']:checked
-  + div 
+  > input[type="radio"]:checked
+  + div
   > span.click,
-  .set-category
+.set-category
   > .category-list-cont
-  > form 
+  > form
   > ul
   > li
   > label
-  > input[type='radio']:checked
-  + div 
-  + button.click{
+  > input[type="radio"]:checked
+  + div
+  + button.click {
   color: #fff;
   background-color: #348f6c;
 }
 
 .set-category
   > .category-list-cont
-  > form 
+  > form
   > ul
   > li
   > label
-  > input[type='radio']:checked
+  > input[type="radio"]:checked
   + div
-  + button:hover{
-    background-color:rgba(255, 255, 255, .2);
-  }
+  + button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 .set-category > .category-list-cont > form > button {
   border: none;
   /* border-radius: 3px; */
@@ -401,7 +429,7 @@ input {
   margin-top: 10px;
   color: #fff;
   background-color: #348f6c;
-  opacity: .5;
+  opacity: 0.5;
   cursor: default;
   float: right;
 }
@@ -409,8 +437,8 @@ input {
   opacity: 1;
   cursor: pointer;
 }
-.set-category > .category-list-cont > form > button.disabled{
-  opacity: .5;
+.set-category > .category-list-cont > form > button.disabled {
+  opacity: 0.5;
 }
 
 /* --- 카테고리 추가 --- */
@@ -427,7 +455,7 @@ input {
   background-color: rgba(226, 201, 146, 0.2);
 }
 .set-category > .category-edit-cont > form:after {
-  content: '';
+  content: "";
   display: block;
   clear: both;
 }
@@ -435,7 +463,7 @@ input {
   background-color: #fff;
 }
 .set-category > .category-edit-cont > form > ul {
-  height:190px;
+  height: 190px;
   margin-top: 10px;
   overflow-y: scroll;
 
@@ -448,7 +476,7 @@ input {
   height: 49px;
   margin: 10px;
   display: inline-block;
-  position:relative;
+  position: relative;
 }
 .set-category > .category-edit-cont > form > ul > li > label {
   /* outline: px solid red; */
@@ -463,28 +491,42 @@ input {
   z-index: 100;
 }
 
-.set-category > .category-edit-cont > form > ul > li > label > i{
-  width:100%;
-  height:100%;
-  padding-top:8px;
+.set-category > .category-edit-cont > form > ul > li > label > i {
+  width: 100%;
+  height: 100%;
+  padding-top: 8px;
 
-  text-align:center;
-  color:#e2c992;
-  font-size:30px;
+  text-align: center;
+  color: #e2c992;
+  font-size: 30px;
   background-color: #f8f4ea;
-  cursor:pointer;
+  cursor: pointer;
 
-  position:absolute; 
-  top:0;
-  left:0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-.set-category > .category-edit-cont > form > ul > li:hover > label > input[type='radio'] + i{
-  color:#443922;
-  background-color:#e2c992;
+.set-category
+  > .category-edit-cont
+  > form
+  > ul
+  > li:hover
+  > label
+  > input[type="radio"]
+  + i {
+  color: #443922;
+  background-color: #e2c992;
 }
-.set-category > .category-edit-cont > form > ul > li > label > input[type='radio']:checked + i{
-  color:#443922;
-  background-color:#e2c992;
+.set-category
+  > .category-edit-cont
+  > form
+  > ul
+  > li
+  > label
+  > input[type="radio"]:checked
+  + i {
+  color: #443922;
+  background-color: #e2c992;
 }
 .set-category > .category-edit-cont > form > button {
   border: none;
@@ -496,27 +538,42 @@ input {
   background-color: #348f6c;
   float: right;
 }
-.set-category > .category-edit-cont > form > button.editCancel{
+.set-category > .category-edit-cont > form > button.editCancel {
   width: auto;
   margin-left: 10px;
 }
-.set-category > .category-edit-cont > form > button.edit{ 
-  background-color: #DB8439;
+.set-category > .category-edit-cont > form > button.edit {
+  background-color: #db8439;
 }
 
 /* ------ AlertPopup.vue ------ */
-.alert-popup{ border-radius: 10px; width: 400px; height: auto; padding: 10px 0; background-color: #3b3b3b; opacity: 0;  position: absolute; top: -80px; left: 70%; transform: translateX(-70%); transition: all .8s ease; }  
-.alert-popup > p{ color: #f8f4ea; text-align: center; font-size: 17px; }
-.popupShow{ opacity: 1; top: 40px; }
-
-
-
-
+.alert-popup {
+  border-radius: 10px;
+  width: 400px;
+  height: auto;
+  padding: 10px 0;
+  background-color: #3b3b3b;
+  opacity: 0;
+  position: absolute;
+  top: -80px;
+  left: 70%;
+  transform: translateX(-70%);
+  transition: all 0.8s ease;
+}
+.alert-popup > p {
+  color: #f8f4ea;
+  text-align: center;
+  font-size: 17px;
+}
+.popupShow {
+  opacity: 1;
+  top: 40px;
+}
 
 /* PC(1024px~) / 태블릿(768px ~ 1023px) / 모바일 (~768px) */
 
 /* 태블릿(768px ~ 1023px) */
-@media screen and (max-width:1023px){
+@media screen and (max-width: 1023px) {
   .setting-page-wrap > * {
     width: calc(100% - 160px);
     margin: 30px 80px 40px;
@@ -535,12 +592,12 @@ input {
     left: 60px;
     z-index: 0;
   } */
-  .setting-page-wrap > .set-asset{
+  .setting-page-wrap > .set-asset {
     margin-right: 80px;
-    margin-bottom: 80px; 
+    margin-bottom: 80px;
     padding: 20px 40px;
-  } 
-  .setting-page-wrap > .set-category  {
+  }
+  .setting-page-wrap > .set-category {
     margin-left: 80px;
     margin-bottom: 50px;
     padding: 20px 40px;
@@ -548,37 +605,42 @@ input {
 
   /* ------ SetCategory.vue ------ */
   .set-category > .category-edit-cont > form > ul {
-    height:300px;
+    height: 300px;
     margin-top: 10px;
   }
 }
 
 /* 모바일 (~768px) */
-@media screen and (max-width:768px){
+@media screen and (max-width: 768px) {
   .setting-page-wrap > * {
     width: calc(100% - 30px);
     margin: 30px 15px 40px;
   }
-  .setting-page-wrap > .set-asset{
+  .setting-page-wrap > .set-asset {
     margin-right: 15px;
     margin-bottom: 70px;
     padding: 10px;
-  } 
-  .setting-page-wrap > .set-category  {
+  }
+  .setting-page-wrap > .set-category {
     margin-left: 15px;
     padding: 10px;
   }
 
   /* ------ AlertPopup.vue ------ */
-  .alert-popup{ width: 300px; }  
-  .alert-popup > p{ font-size: 15px; }
-  .popupShow{ top: 50px; }
+  .alert-popup {
+    width: 300px;
+  }
+  .alert-popup > p {
+    font-size: 15px;
+  }
+  .popupShow {
+    top: 50px;
+  }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
   /* ------ AlertPopup.vue ------ */
-  .alert-popup{ width: 200px; }  
+  .alert-popup {
+    width: 200px;
+  }
 }
-
-
-
