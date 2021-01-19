@@ -39,6 +39,8 @@ export default {
   },
 
   created() {
+    console.log(this.$parent);
+    console.log(this.$root);
     this.$parent.loadingStatus = false;
     window.addEventListener('resize', e => (this.size = e.target.innerWidth));
   },

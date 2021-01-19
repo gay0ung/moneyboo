@@ -6,6 +6,7 @@ import {
   getUserNickname,
   getCurrentRouter,
   saveAuth,
+  getCalculatedValues,
 } from '../utils/cookies.js';
 import { loginUser } from '@/api/fireAuth';
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     nickname: getUserNickname() || '',
     // 라우터
     currentRouter: getCurrentRouter() || '',
+    calculatedValues: getCalculatedValues() || {},
   },
   getters: {
     // 유저가 로그인 했는지 확인
@@ -52,6 +54,10 @@ export default new Vuex.Store({
     // 라우터 경로
     SET_ROUTER_PATH(state, router) {
       state.currentRouter = router;
+    },
+
+    SET_CALCULATED_VALUES(state) {
+      state.calculatedValues = {};
     },
   },
   actions: {

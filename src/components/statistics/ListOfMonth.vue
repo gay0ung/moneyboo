@@ -42,7 +42,6 @@ export default {
       dailyList: [],
       cList: [], // 카테고리별 분류
       cDetail: [], // 카테고리별 상세내용
-      pPrice: [], // 지출별 백분율
     };
   },
   created() {

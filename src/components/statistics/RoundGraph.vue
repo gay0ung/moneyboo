@@ -65,7 +65,7 @@ export default {
   },
   mounted() {
     const ctx = this.$refs.rGraph;
-
+    console.log(this);
     this.$_Chart.defaults.global.defaultFontColor = '#3b3b3b';
     this.$_Chart.defaults.global.defaultFontFamily = 'Jua';
     roundData = {
@@ -162,6 +162,7 @@ export default {
     },
 
     clickHandler(context, el) {
+      console.log(el[0]._model.label);
       try {
         let target = el[0]._model.label;
 

@@ -533,7 +533,6 @@ export default {
       };
       this.editCssChange();
     },
-
     editCssChange() {
       const target = event.target.parentNode.children[0].value;
       const lis = event.target.parentNode.parentNode.children;
@@ -555,7 +554,6 @@ export default {
       });
       editBtn.classList.remove('colorChange');
     },
-
     assetAddComma(asset) {
       return addComma(asset);
     },

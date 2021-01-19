@@ -32,7 +32,8 @@
 import { addComma } from '@/utils/filters.js';
 import { settingColRef, dailyColRef } from '@/api/firestore';
 import { mapState } from 'vuex';
-import { eventBus } from '../main.js';
+import { saveAuth } from '@/utils/cookies.js';
+// import { eventBus } from '../main.js';
 
 export default {
   data() {
@@ -67,7 +68,6 @@ export default {
         .onSnapshot(snapshot => {
           if (snapshot.exists) {
             const assets = snapshot.data().assets;
-            console.log(snapshot.data());
             this.cash = assets.cashAsset;
           } else if (this.$router.currentRoute.path !== '/main') {
             // 값이 없을 경우
@@ -88,6 +88,10 @@ export default {
             this.bankArr = snapshot.data().banks;
             this.totalCalculate();
             this.currenttValues;
+            saveAuth(
+              'calculated',
+              JSON.stringify({ cash: this.cash, bankArr: this.bankArr }),
+            );
           } else {
             // 값이 없을 경우
             alert(
@@ -121,7 +125,6 @@ export default {
       dailyList.forEach(listDB => {
         let listBank = listDB.bank;
         let listItem = listDB.item;
-        console.log('리스트 디비 체크!!!', listDB);
 
         if (listBank === bankName && listItem === 'expend') {
           price += Number(listDB.price);
@@ -129,7 +132,6 @@ export default {
           price += -Number(listDB.price);
         }
       });
-      console.log('계산====>', this.makeComma(Number(bankAsset) - price));
       return this.makeComma(Number(bankAsset) - price);
     },
 
@@ -175,8 +177,6 @@ export default {
           info.asset += price;
         }
       });
-
-      eventBus.$emit('calculatedValues', { cash: this.cash, bankArr: bankArr });
     },
 
     calulatedBanksAssets() {
