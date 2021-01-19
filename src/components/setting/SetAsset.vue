@@ -146,6 +146,7 @@
         수정
       </button>
     </form>
+    {{ calculatedValues }}
   </div>
 </template>
 
@@ -154,6 +155,7 @@ import { makeID, addComma /*newConversionMonth*/ } from '@/utils/filters.js';
 import { moneybooRef, settingColRef } from '@/api/firestore';
 import firebase from 'firebase';
 import bus from '@/utils/bus';
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -191,7 +193,9 @@ export default {
     // DailyList.vue의 지출 내역 불러옴.
     this.getBankBalance();
   },
-  computed: {},
+  computed: {
+    ...mapState(['calculatedValues']),
+  },
   methods: {
     mbooRef() {
       return moneybooRef(this.currentUid);
@@ -453,7 +457,6 @@ export default {
     },
     // 각 은행 별 자산 사용 후 남은 금액.
     matchBankPrice() {
-      console.log('은행 남은 자산액 구하는 함수 돈다!!!');
       let bankArr = [];
       for (let i = 0; i < this.saveAsset.banks.length; i++) {
         let bankArrCont = {
@@ -462,7 +465,7 @@ export default {
         };
         bankArr[i] = bankArrCont;
       }
-      console.log(bankArr);
+
       // 'dailyList'에서 불러온 지출/수입 내역 foreEach로 확인.
       this.getAllListData.forEach(listdata => {
         // bankAsset과 같은 은행의 지출 내역 구함.

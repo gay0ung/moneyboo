@@ -22,7 +22,6 @@ export default {
   props: ['bgColors', 'year'],
   data() {
     return {
-      currentUID: '',
       yearsList: [], // dailyList데이터
       yearsExpend: [],
     };
