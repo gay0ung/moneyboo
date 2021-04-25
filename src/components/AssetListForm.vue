@@ -33,7 +33,6 @@ import { addComma } from '@/utils/filters.js';
 import { settingColRef, dailyColRef } from '@/api/firestore';
 import { mapState } from 'vuex';
 import { saveAuth } from '@/utils/cookies.js';
-// import { eventBus } from '../main.js';
 
 export default {
   data() {

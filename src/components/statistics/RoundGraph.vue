@@ -162,7 +162,6 @@ export default {
     },
 
     clickHandler(context, el) {
-      console.log(el[0]._model.label);
       try {
         let target = el[0]._model.label;
 

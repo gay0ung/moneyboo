@@ -57,7 +57,6 @@ export default {
       const yearsDB = this.yearsList;
 
       let flattened = yearsDB.reduce((acc, curr) => acc.concat(curr), []);
-
       let exArr = flattened.filter(exp => exp.item === 'expend');
 
       // 몇월인지 ?

@@ -49,6 +49,7 @@ export default {
       this.barChartDataUpdate(myChart, barData, this.yearsExpend);
     });
   },
+
   mounted() {
     var ctx = this.$refs.bGraph;
 

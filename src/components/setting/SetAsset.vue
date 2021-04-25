@@ -533,7 +533,7 @@ export default {
       };
       this.editCssChange();
     },
-    editCssChange() {
+    editCssChange(event) {
       const target = event.target.parentNode.children[0].value;
       const lis = event.target.parentNode.parentNode.children;
       lis.forEach(li => {
